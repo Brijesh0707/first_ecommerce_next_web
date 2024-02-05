@@ -2,12 +2,17 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React from 'react'
-
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
-    const pathname= usePathname()
-    const token = localStorage.getItem("token")
+    const pathname = usePathname();
+    const [token, setToken] = useState(null);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedToken = localStorage.getItem("token");
+            setToken(storedToken);
+        }
+    }, []);
   return (
     <>
         <header className='w-[100%] h-[60px] bg-gray-200 fixed top-0 z-10 '>
