@@ -4,8 +4,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
+
 export default function Navbar() {
     const pathname= usePathname()
+    const token = localStorage.getItem("token")
   return (
     <>
         <header className='w-[100%] h-[60px] bg-gray-200 fixed top-0 z-10 '>
@@ -19,13 +21,16 @@ export default function Navbar() {
                <div className='flex gap-5 items-center mt-1'>
                 <Link href="/" className={`pl-3 pr-3 pt-1 pb-1 rounded-lg hover:text-white ${pathname==="/"?'bg-bgg_base text-white':''}  hover:bg-bgg_base `}
                   style={{ transition: 'ease-out 0.3s' }} >Home</Link>
-                <Link  href="/" className='pl-3 pr-3 pt-1 pb-1 rounded-lg hover:text-white hover:bg-bgg_base '
+                <Link  href="/allproducts" className={`pl-3 pr-3 pt-1 pb-1 rounded-lg  ${pathname==="/allproducts"?'bg-bgg_base text-white':''} hover:text-white hover:bg-bgg_base `}
                   style={{ transition: 'ease-out 0.3s' }}>All Products</Link>
-                <Link  href="/" className='pl-3 pr-3 pt-1 pb-1 rounded-lg hover:text-white hover:bg-bgg_base '
-                  style={{ transition: 'ease-out 0.3s' }}>Profile</Link>
-                <Link href="/" className='pl-3 pr-3 pt-1 pb-1 rounded-lg hover:text-white hover:bg-bgg_base '
+                {token ?
+                  <Link  href="/" className='pl-3 pr-3 pt-1 pb-1 rounded-lg hover:text-white hover:bg-bgg_base '
+                  style={{ transition: 'ease-out 0.3s' }}>Profile</Link>:<Link href="/login" className={`pl-3 pr-3 pt-1 pb-1 rounded-lg hover:text-white hover:bg-bgg_base ${pathname==="/login"?'bg-bgg_base text-white':''}`}
                   style={{ transition: 'ease-out 0.3s' }}>Login</Link>
-                <Link href="/">🛒</Link>
+
+                }
+                
+                <Link href="/cart">🛒</Link>
                
 
 

@@ -1,8 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
+import NextTopLoader from 'nextjs-toploader';
 
 export const metadata = {
   title: "brij-ecommerce",
@@ -14,7 +16,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
       <Navbar/>
-      {children}
+      <NextTopLoader height={10} color="#FC6736"/>
+    <section className="h-[100%]">
+    {children}
+    </section>
+      <Footer/>
       </body>
     </html>
   );
